@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<a class="btn btn-primary" href="/home">Retour</a>
+				<img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
+
+				<h1>{{post.title}}</h1>
+				<p class="card-text">{{post.content}}</p>
+				<p>{{post.author}}
+					-
+					{{post.createdAt |date("d/m/Y")}}</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				{{ form(form) }}
+			</div>
+		
+			<div class="col-md-9">
+				{% for comment in post.comments %}
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">{{ comment.pseudo }}</h5>
+							<h6 class="card-subtitle mb-2 text-muted">{{ comment.createdAt | date("d/m/Y")}}</h6>
+							<p class="card-text">{{ comment.content }}</p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
